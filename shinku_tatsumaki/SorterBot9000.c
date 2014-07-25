@@ -21,27 +21,43 @@ int main()
 	{
 		if(analog(0)>blueValue-variableValue && analog(0)< blueValue+variableValue)		//adding a range of 75 for
 		{																				//tolerance of hardware fluctuations
-			printf("DETECTED BLUE BALL, MOVING LEFT\n");
-			set_servo_position(tilterPort,leftTilt);
-			msleep(1500);
-			set_servo_position(gatePort,raisedGate);
-			msleep(1000);
-			set_servo_position(gatePort,loweredGate);
-			msleep(1000);
-			set_servo_position(tilterPort,centeredTilt);
-			msleep(1500);
+			printf("DETECTED BLUE BALL, CONFIRMING\n");
+			msleep(500);
+			if(analog(0)>blueValue-variableValue && analog(0)< blueValue+variableValue)
+			{
+				set_servo_position(tilterPort,leftTilt);
+				msleep(1500);
+				set_servo_position(gatePort,raisedGate);
+				msleep(1000);
+				set_servo_position(gatePort,loweredGate);
+				msleep(1000);
+				set_servo_position(tilterPort,centeredTilt);
+				msleep(1500);
+			}
+			else
+			{
+				printf("CONFIRMATION FAILED. RETRYING...\n");
+			}
 		}
 		else if(analog(0)>redValue-variableValue && analog(0)<redValue+variableValue)
 		{
-			printf("DETECTED RED BALL, MOVING RIGHT\n");
-			set_servo_position(tilterPort,rightTilt);
-			msleep(1500);
-			set_servo_position(gatePort,raisedGate);
-			msleep(1000);
-			set_servo_position(gatePort,loweredGate);
-			msleep(1000);
-			set_servo_position(tilterPort,centeredTilt);
-			msleep(1500);
+			printf("DETECTED RED BALL, CONFIRMING\n");
+			msleep(500);
+			if(analog(0)>redValue-variableValue && analog(0)< redValue+variableValue)
+			{
+				set_servo_position(tilterPort,rightTilt);
+				msleep(1500);
+				set_servo_position(gatePort,raisedGate);
+				msleep(1000);
+				set_servo_position(gatePort,loweredGate);
+				msleep(1000);
+				set_servo_position(tilterPort,centeredTilt);
+				msleep(1500);
+			}
+			else
+			{
+				printf("CONFIRMATION FAILED. RETRYING...\n");
+			}
 		}
 		else
 		{
