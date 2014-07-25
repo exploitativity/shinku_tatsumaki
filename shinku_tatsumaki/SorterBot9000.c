@@ -1,9 +1,9 @@
 //This program will, obviously, sort the balls by their color by utilizing the reflective sensor to measure the value.
 //If it detects a red ball, a servo will move to let the ball into one box. A blue ball will move to another box.
 
-int blueValue=30;
-int redValue=500;
-int variableValue=50;
+int blueValue=150;
+int redValue=350;
+int variableValue=100;
 
 int gatePort=1;
 int raisedGate=300;
@@ -19,8 +19,8 @@ int main()
 	enable_servos();
 	while(1)
 	{
-		if(analog(0)>blueValue-variableValue && analog(0)< blueValue+variableValue)
-		{
+		if(analog(0)>blueValue-variableValue && analog(0)< blueValue+variableValue)		//adding a range of 75 for
+		{																				//tolerance of hardware fluctuations
 			printf("DETECTED BLUE BALL, MOVING LEFT\n");
 			set_servo_position(tilterPort,leftTilt);
 			msleep(1500);
